@@ -1,0 +1,61 @@
+public class Account {
+	private double balance;
+	private int branch;
+	private int number;
+	private static int accountTotal;
+	
+	public Account(int branch, int number) {
+		Account.accountTotal++;
+		this.branch=branch;
+		this.number=number;
+		this.balance=0;
+		System.out.println("The total of accounts is " + accountTotal);
+	}
+	
+	public void deposit (double value) {
+		balance += value;
+	}
+	
+	public boolean withdraw(double value) {
+		if(this.balance >= value) {
+			this.balance -= value;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean transfer(double value, Account destiny) {
+		if(this.balance >= value) {
+			this.withdraw(value);
+			destiny.deposit(value);
+			System.out.println("The trasnfer was a success.");
+			return true;
+		}
+		System.out.println("The trasnfer was NOT a success.");
+		return false;
+	}
+	
+	public double getBalance() {
+		return this.balance;
+	}
+	
+	public int getNumber() {
+		return this.number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public int getBranch() {
+		return branch;
+	}
+
+	public void setBranch(int branch) {
+		this.branch = branch;
+	}
+	public static int getaccountTotal() {
+		return Account.accountTotal;
+	}
+}
