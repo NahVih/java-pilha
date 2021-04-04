@@ -12,7 +12,7 @@ public class Account {
 		System.out.println("The total of accounts is " + accountTotal);
 	}
 	
-	public void deposit (double value) {
+	public void deposit (double value) throws MyException {
 		balance += value;
 	}
 	
@@ -29,7 +29,11 @@ public class Account {
 	public boolean transfer(double value, Account destiny) {
 		if(this.balance >= value) {
 			this.withdraw(value);
-			destiny.deposit(value);
+			try{
+				destiny.deposit(value);
+			} catch(MyException ex) {
+				System.out.println("Working ...");
+			}
 			System.out.println("The trasnfer was a success.");
 			return true;
 		}
